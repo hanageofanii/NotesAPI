@@ -30,7 +30,7 @@ A simple backend service for managing notes. This service provides APIs to:
 3. **Configure Environment Variables**  
    Create a `.env` file in the root directory with the following content:  
    ```env
-   APP_PORT=5000
+   APP_PORT=3000
    HOST=localhost
    USER=root
    PASSWORD=
