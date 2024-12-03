@@ -1,55 +1,66 @@
 # Notes Backend
 
-## A simple backend service for managing notes. This service provides APIs to:
-1. **Create** a new note
-2. **View** all notes
-3. **View** a specific note by ID
-4. **Update** an existing note
-5. **Delete** a note
-
+A simple backend service for managing notes. This service provides APIs to:
+- **Create** a new note
+- **View** all notes
+- **View** a specific note by ID
+- **Update** an existing note
+- **Delete** a note
 
 ## Requirements
-1. **Node.js** - JavaScript runtime environment
-2. **MySQL** - Database server
-3. **Express.js** - Web framework for Node.js
-4. **mysql2** - MySQL client for Node.js
-5. **dotenv** - Load environment variables from a .env file
+- **Node.js** - JavaScript runtime environment  
+- **MySQL** - Database server  
+- **Express.js** - Web framework for Node.js  
+- **mysql2** - MySQL client for Node.js  
+- **dotenv** - Load environment variables from a `.env` file  
 
 ## Installation and Setup
+1. **Clone the Repository**  
+   ```bash
+   git clone https://github.com/hanageofanii/NotesAPI.git
+   cd notes-backend
+   ```
 
-### 1. Clone the Repository
-git clone https://github.com/hanageofanii/NotesAPI.git
-cd notes-backend
+2. **Install Dependencies**  
+   ```bash
+   npm install
+   ```
 
-### 2. Install Dependencies
-npm install
+3. **Configure Environment Variables**  
+   Create a `.env` file in the root directory with the following content:  
+   ```env
+   APP_PORT=5000
+   HOST=localhost
+   USER=root
+   PASSWORD=
+   DATABASE=notes_db
+   ```
 
-### Configure Environment Variables
-APP_PORT=5000
-HOST=localhost
-USER=root
-PASSWORD=
-DATABASE=notes_db
+4. **Set Up the Database**  
+   Start your MySQL server, then open your MySQL client or terminal and run the following SQL commands:  
+   ```sql
+   CREATE DATABASE notes_db;
+   USE notes_db;
+   CREATE TABLE notes (
+       id BIGINT AUTO_INCREMENT PRIMARY KEY,
+       title TEXT NOT NULL,
+       datetime DATETIME NOT NULL,
+       note LONGTEXT NOT NULL
+   );
+   ```
 
-### Set Up the Database
-**1. Start your MySQL server.**
-**2. Open your MySQL client or terminal and run the following SQL commands:**
-CREATE DATABASE notes_db;
-USE notes_db;
-CREATE TABLE notes (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    title TEXT NOT NULL,
-    datetime DATETIME NOT NULL,
-    note LONGTEXT NOT NULL
-);
+5. **Start the Server**  
+   ```bash
+   npm start
+   ```
+   The server will be running at: [http://localhost:3000](http://localhost:3000).
 
-**3. Start the Server**
-npm start
-***http://localhost:5000.***
+## API Endpoints
 
-# API Endpoints
-
-**1. GET /notes**
+### **GET /notes**  
+Fetch all notes.  
+**Sample Response:**
+```json
 [
   {
     "id": 1,
@@ -58,72 +69,93 @@ npm start
     "note": "This is a sample note."
   }
 ]
+```
 
-**2. GET /notes/:id**
-*id (number): The unique ID of the note.*
+### **GET /notes/:id**  
+Fetch a note by ID.  
+**Parameters:**  
+- `id` (number): The unique ID of the note.  
+
+**Sample Response:**
+```json
 {
   "id": 1,
   "title": "Sample Note",
   "datetime": "2024-12-03T10:30:00",
   "note": "This is a sample note."
 }
+```
 
-**3. POST /notes**
-*Create a new note.*
+### **POST /notes**  
+Create a new note.  
+**Request Body:**
+```json
 {
   "title": "New Note",
   "datetime": "2024-12-03T10:30:00",
   "note": "This is a new note created via API."
 }
-*Response :*
+```
+**Sample Response:**
+```json
 {
   "message": "Note created successfully"
 }
+```
 
-**4. PUT /notes/:id**
-*Update an existing note.*
-id (number): The unique ID of the note.
+### **PUT /notes/:id**  
+Update an existing note.  
+**Parameters:**  
+- `id` (number): The unique ID of the note.  
+
+**Request Body:**
+```json
 {
   "title": "Updated Note Title",
   "datetime": "2024-12-04T12:00:00",
   "note": "Updated content of the note."
 }
-*Response:*
+```
+**Sample Response:**
+```json
 {
   "message": "Note updated successfully"
 }
+```
 
-**5. DELETE /notes/:id**
-*Delete a note by ID.*
-id (number): The unique ID of the note.
-*Response:*
+### **DELETE /notes/:id**  
+Delete a note by ID.  
+**Parameters:**  
+- `id` (number): The unique ID of the note.  
+
+**Sample Response:**
+```json
 {
   "message": "Note deleted successfully"
 }
+```
 
-# FILE STRUCTURE
+## File Structure
+```
 notes-backend/
-│
 ├── controllers/          
 │   └── notesController.js
-├── db/          
+├── db/                   
 │   └── connection.js
-├── routes/              
+├── routes/               
 │   └── notes.js
-│
-├── .env                 
+├── .env                  
 ├── .gitignore            
-├── server.js            
+├── server.js             
 ├── package.json          
-└── README.md    
+└── README.md             
+```
 
 ## Troubleshooting
 1. Ensure the MySQL database is running and accessible.
-2. Verify the .env file is correctly configured.
+2. Verify the `.env` file is correctly configured with valid database credentials.
 3. Check error messages in the console and adjust the configuration as needed.
 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for details.
-
-
-
+```
