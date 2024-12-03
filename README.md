@@ -23,7 +23,10 @@ A simple backend service for managing notes. This service provides APIs to:
 
 2. **Install Dependencies**  
    ```bash
-   npm install
+    mkdir notes-backend
+    cd notes-backend
+    npm install
+    npm install express mysql2 dotenv moment-timezone
    ```
 
 3. **Configure Environment Variables**  
@@ -157,5 +160,5 @@ notes-backend/
 3. Check error messages in the console and adjust the configuration as needed.
 
 ## License
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under the MIT License. See the `LICENSE` file for details.
 ```
