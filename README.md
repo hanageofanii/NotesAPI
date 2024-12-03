@@ -23,8 +23,6 @@ A simple backend service for managing notes. This service provides APIs to:
 
 2. **Install Dependencies**  
    ```bash
-    mkdir notes-backend
-    cd notes-backend
     npm install
     npm install express mysql2 dotenv moment-timezone
    ```
